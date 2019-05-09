@@ -19,11 +19,15 @@ void continuar() {
 void crear(char titulo[15]) {
     FILE *archivo; //, *copiaSeguridad;
     char resp = 'n';
-
+    
+    char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+    
+    //printf("%s",strcat("Z:\\Ficheros\\",titulo));
     //leer archivo binario
-    if (fopen(titulo, "rb") == NULL) { //el archivo no existe
+    if (fopen(tit, "rb") == NULL) { //el archivo no existe
         //printf("Error: %d, %s\n", sys_nerr, sys_errlist[sys_nerr]);
-        archivo = fopen(titulo, "wb"); //leer archivo binario
+        archivo = fopen(tit, "wb"); //leer archivo binario
         printf("El fichero %s se ha creado correctamente\n ", titulo);
         //exit(1); //error
 
@@ -36,9 +40,9 @@ void crear(char titulo[15]) {
             //scanf("%c\r",&resp);
 
             if (resp == 's') {
-                archivo = fopen(titulo, "wb");
+                archivo = fopen(tit, "wb");
             } else {
-                archivo = fopen(titulo, "rb");
+                archivo = fopen(tit, "rb");
             }
 
         } while (resp != 's' && resp != 'n');
@@ -56,9 +60,12 @@ void cargar(char titulo[]) {
     regSecciones secciones;
     regIva iva;
     regPagos formPagos;
-
+    
+    char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+    printf("%s\n",titulo);
     FILE *archivo;
-    archivo = fopen(titulo, "ab"); //abrir para aÃ±adir al archivo binario//strcat(titulo,".dat"); para concatenar los caracteres
+    archivo = fopen(tit, "ab"); //abrir para aÃ±adir al archivo binario//strcat(titulo,".dat"); para concatenar los caracteres
     if (archivo == NULL) {
         exit(1);
     }
@@ -113,14 +120,20 @@ void consulta(char titulo[]) {
     regSecciones secciones;
     regIva iva;
     regPagos formPagos;
-
-    FILE *archivo = fopen(titulo, "rb"); //lectura binaria
+    
+    char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+    
+    FILE *archivo = fopen(tit, "rb"); //lectura binaria
 
     if (archivo == NULL) {
         printf("No existe archivo\n");
         exit(1);
     }
     char ref[20];
+    
+    
+    
     if (strncmp(titulo, "Articulos", 2) == 0) {
         printf("Ingrese el referencia %s a consultar:", titulo);
         scanf("%s", ref);
@@ -235,7 +248,10 @@ int modificacion(char titulo[]) {
     regIva iva;
     regPagos formPagos;
 
-    FILE *archivo = fopen(titulo, "r+b"); //lectura binaria
+    char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+    
+    FILE *archivo = fopen(tit, "r+b"); //lectura binaria
 
     if (archivo == NULL) {
         printf("No existe archivo\n");
@@ -465,8 +481,10 @@ void listado(char titulo[]) {
     regSecciones secciones;
     regIva iva;
     regPagos formPagos;
-
-    FILE *archivo = fopen(titulo, "rb"); //abrir el archivo en modo lectura binaria
+char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+    
+    FILE *archivo = fopen(tit, "rb"); //abrir el archivo en modo lectura binaria
 
     if (archivo == NULL) {
         exit(1);
@@ -562,8 +580,11 @@ int elimina(char titulo[]) {
     int cod;
 
     FILE *archivo, *temporal;
-    archivo = fopen(titulo, "rb");
-    temporal = fopen("temporal", "wb");
+    char tit[200]="Z:\\Ficheros\\";
+    strcat(tit,titulo);
+        
+    archivo = fopen(tit, "rb");
+    temporal = fopen("Z:\\Ficheros\\temporal", "wb");
 
     if (strncmp(titulo, "Articulos", 2) == 0) {
         printf("Ingrese el referencia %s a consultar:", titulo);
@@ -644,8 +665,9 @@ int elimina(char titulo[]) {
     continuar();
     //remove(titulo);
     //continuar();
-    remove(titulo);
-    rename("temporal", titulo);
+    remove(tit);
+    
+    rename("Z:\\Ficheros\\temporal", tit);
     continuar();
     return 0;
 }
@@ -718,7 +740,7 @@ int main() {
                 menu2("Secciones");
                 break;
             case 5:
-                menu2("IVA");
+                menu2("Iva");
                 break;
             case 6:
                 menu2("F_Pago");
