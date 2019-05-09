@@ -8,49 +8,7 @@
 
 //char * gets(char *);
 
-typedef struct {
-	int codigoCli; //primarykey
-	char dniCli[15];
-	char nombreCli[80];
-	char direccionCli[100];
-	char poblacionCli[50];
-	char provinciaCli[30];
-	char cpCli[6];
-} regClientes;
-
-typedef struct {
-	int codigoPro; //primarykey
-	char dniPro[15];
-	char nombrePro[80];
-	char direccionPro[100];
-	char poblacionPro[50];
-	char provinciaPro[30];
-	char cpPro[6];
-} regProveedores;
-
-typedef struct {
-	char referenciaArt[20]; //primarykey
-	char descrpcionArt[80];
-	int existencias;
-	int precio;
-	int stockMinimo;
-	int codigoSec; //FORGEIN KEY tabla secciones
-} regArticulos;
-
-typedef struct {
-	int codigoSec; //primarykey
-	char descrpcionSec[80];
-} regSecciones;
-
-typedef struct {
-	int codigoIva; //primarykey
-	int descrpcionIva;
-} regIva;
-
-typedef struct {
-	int codigoPago; //primarykey
-	char descrpcionPago[80];
-} regPagos;
+#include "estructuras.h"
 
 void continuar() {
 	printf("Presione una tecla para continuar.....\n");
@@ -881,6 +839,8 @@ int main() {
 	} while (opcion != 0);
 	return 0;
 }
+
+
 
 
 
