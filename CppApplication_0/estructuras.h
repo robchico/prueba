@@ -95,15 +95,15 @@ regProveedores rellenarProveedores(char modificar, regProveedores proveedores) {
 
 	fflush(stdin);
 	printf("Ingrese el DNI de Proveedores:");
-	fgets(proveedores.dniPro, sizeof(proveedores.dniPro), stdin);
+	scanf("%s", proveedores.dniPro);
 	printf("Ingrese el nombre Proveedores:");
-	fgets(proveedores.nombrePro, sizeof(proveedores.nombrePro), stdin);
+	scanf("%s", proveedores.nombrePro);
 	printf("Ingrese la direccion del Proveedores:");
-	fgets(proveedores.direccionPro, sizeof(proveedores.direccionPro), stdin);
+	scanf("%s", proveedores.direccionPro);
 	printf("Ingrese la poblacion del Proveedores:");
-	fgets(proveedores.poblacionPro, sizeof(proveedores.poblacionPro), stdin);
+	scanf("%s", proveedores.poblacionPro);
 	printf("Ingrese la provincia del Proveedores:");
-	fgets(proveedores.provinciaPro, sizeof(proveedores.provinciaPro), stdin);
+	scanf("%s", proveedores.provinciaPro);
 	printf("Ingrese CP:");
 	scanf("%s", proveedores.cpPro);
 	return proveedores;
@@ -113,12 +113,12 @@ regArticulos rellenarArticulos(char modificar, regArticulos articulo) {
 	//pedir los datos por pantalla
 	if (modificar == 'n') {
 		printf("\nIngrese la referencia del articulo:");
-		fgets(articulo.referenciaArt, sizeof(articulo.referenciaArt), stdin);
+		scanf("%s", articulo.referenciaArt);
 	}
 
 	fflush(stdin);
 	printf("Ingrese la descripcion del articulo:");
-	fgets(articulo.descrpcionArt, sizeof(articulo.descrpcionArt), stdin);
+	scanf("%s", articulo.descrpcionArt);
 	printf("Ingrese numero de existencias:");
 	scanf("%d", &articulo.existencias);
 	printf("Ingrese el precio del articulo:");
@@ -127,6 +127,7 @@ regArticulos rellenarArticulos(char modificar, regArticulos articulo) {
 	scanf("%d", &articulo.stockMinimo);
 	printf("Ingrese codigo:");
 	scanf("%d", &articulo.codigoSec);
+        
 	return articulo;
 }
 
@@ -140,7 +141,7 @@ regSecciones rellenarSecciones(char modificar, regSecciones secciones) {
 
 	fflush(stdin);
 	printf("Ingrese la descripcion de la seccion:");
-	fgets(secciones.descrpcionSec, sizeof(secciones.descrpcionSec), stdin);
+	scanf("%s", secciones.descrpcionSec);
 
 	return secciones;
 }
@@ -173,7 +174,7 @@ regPagos rellenarPagos(FILE *archivo, regPagos pagos) {
 	printf("codigo pago: %d\n", pagos.codigoPago);
 	fflush(stdin);
 	printf("Ingrese la descripcion de la forma de pago:");
-	fgets(pagos.descrpcionPago, sizeof(pagos.descrpcionPago), stdin);
+	scanf("%d", pagos.descrpcionPago);
 
 	return pagos;
 }

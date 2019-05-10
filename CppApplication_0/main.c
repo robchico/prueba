@@ -20,7 +20,7 @@ void crear(char titulo[15]) {
     FILE *archivo; //, *copiaSeguridad;
     char resp = 'n';
     
-    char tit[200]="Z:\\Ficheros\\";
+    char tit[100]="Z:\\Ficheros\\";
     strcat(tit,titulo);
     
     //printf("%s",strcat("Z:\\Ficheros\\",titulo));
@@ -49,7 +49,7 @@ void crear(char titulo[15]) {
     }
 
     fclose(archivo);
-    continuar();
+    system("pause");
 }
 
 /*cargar datos de 1 estructura dentro del archivo*/
@@ -109,7 +109,7 @@ void cargar(char titulo[]) {
     }
 
     fclose(archivo);
-    continuar();
+    system("pause");
 }
 
 void consulta(char titulo[]) {
@@ -233,7 +233,7 @@ void consulta(char titulo[]) {
         printf("No existe el codigo\n");
     }
     fclose(archivo);
-    continuar();
+    system("pause");
 }
 
 int modificacion(char titulo[]) {
@@ -468,7 +468,7 @@ int modificacion(char titulo[]) {
     }
 
     fclose(archivo);
-    continuar();
+    system("pause");
     return 0;
 }
 
@@ -481,7 +481,7 @@ void listado(char titulo[]) {
     regSecciones secciones;
     regIva iva;
     regPagos formPagos;
-char tit[200]="Z:\\Ficheros\\";
+    char tit[200]="Z:\\Ficheros\\";
     strcat(tit,titulo);
     
     FILE *archivo = fopen(tit, "rb"); //abrir el archivo en modo lectura binaria
@@ -492,7 +492,7 @@ char tit[200]="Z:\\Ficheros\\";
 
     if (strncmp(titulo, "Clientes", 2) == 0) {
         fread(&clientes, sizeof (regClientes), 1, archivo); //leo los datos
-        printf("lista %s  \n codigo  dni  nombre direccion poblacion provincia  cp", titulo);
+        printf("\n\t\tLista %s  \n codigo  dni  nombre direccion poblacion provincia  cp\n", titulo);
         printf("  \n-------------------------------------------------------------------------------------------------------------------\n");
         //mientras tenga datos el archivo ejecuta
         while (!feof(archivo)) {
@@ -517,7 +517,7 @@ char tit[200]="Z:\\Ficheros\\";
         printf("  \n-------------------------------------------------------------------------------------------------------------------\n");
     } else if (strncmp(titulo, "Articulos", 2) == 0) {
         fread(&articulos, sizeof (regArticulos), 1, archivo); //leo los datos
-        printf("  \n-----------------------------------\n");
+        printf("  \n---------------------------------------------------------------------------------------------------------------------\n");
         //mientras tenga datos el archivo ejecuta
         while (!feof(archivo)) {
             printf("\t%s\t%s\t%d\t%d\t%d\t%d\n", articulos.referenciaArt,
@@ -559,8 +559,9 @@ char tit[200]="Z:\\Ficheros\\";
         printf("mallll");
     }
     fclose(archivo);
-    continuar();
-    continuar();
+    //continuar();
+    //continuar();
+    system ("pause");
 }
 
 //eliminar
@@ -662,22 +663,25 @@ int elimina(char titulo[]) {
 
     fclose(archivo);
     fclose(temporal);
-    continuar();
+    //continuar();
     //remove(titulo);
     //continuar();
     remove(tit);
     
     rename("Z:\\Ficheros\\temporal", tit);
-    continuar();
+    system("pause");
     return 0;
 }
 
 int menu2(char titulo[]) {
     int opcion;
-
+   
+    
     do {
+
         system("cls");
-        printf("\n1.  Crear / AÃ±adir registro %s", titulo);
+	system("cmd");
+        printf("\n1.  Crear / Añadir registro %s", titulo);
         printf("\n2.  Modificar registro %s", titulo);
         printf("\n3.  Buscar un registro %s", titulo);
         printf("\n4.  Listar todos registro %s", titulo);
@@ -712,37 +716,46 @@ int menu2(char titulo[]) {
 
 int main() {
     int opcion;
+    
 
     do {
         system("cls");
-        printf("\n1 - Menu Clientes");
-        printf("\n2 - Menu Proveedores");
-        printf("\n3 - Menu Articulos");
-        printf("\n4 - Menu Secciones");
-        printf("\n5 - Menu IVA");
-        printf("\n6 - Menu Formas de Pago");
-        printf("\n0 - SAlir\n");
+        system("title  PROYECTO");
+        system("COLOR 1F");
+	system("MODE 100,25"); 
+        printf("\n 1 - Menu Clientes");
+        printf("\n 2 - Menu Proveedores");
+        printf("\n 3 - Menu Articulos");
+        printf("\n 4 - Menu Secciones");
+        printf("\n 5 - Menu IVA");
+        printf("\n 6 - Menu Formas de Pago");
+        printf("\n 0 - SAlir\n");
         printf("\n\tIngrese su opcion:  ");
         scanf("%d", &opcion);
 
         switch (opcion) {
             case 1:
-
+                system("title  Clientes");
                 menu2("Clientes");
                 break;
             case 2:
+                system("title  Proveedores");
                 menu2("Proveedores");
                 break;
             case 3:
+                system("title  Articulos");
                 menu2("Articulos");
                 break;
             case 4:
+                system("title  Secciones");
                 menu2("Secciones");
                 break;
             case 5:
+                system("title  Iva");
                 menu2("Iva");
                 break;
             case 6:
+                system("title  Formas de Pago");
                 menu2("F_Pago");
                 break;
         }
